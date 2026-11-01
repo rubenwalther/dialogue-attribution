@@ -84,12 +84,10 @@ commit, number of requests, tokens and seconds.
 Alice's Adventures in Wonderland, chapter 7 ("A Mad Tea-Party"): 147 quotes,
 four speakers (Alice, Hatter, March Hare, Dormouse).
 
-<!-- Fill in from `dialogue-attribution eval …` and results/llm.meta.json. Every number here must come from a run. -->
-
 | Method | Speaker accuracy | Emotion agreement | Source |
 |---|---:|---:|---|
 | Rule baseline | 89.8 % (132/147) | 60.5 % (89/147) | measured 2026-11-01, `results/baseline.jsonl` |
-| LLM (`MODEL`) | … | … | measured DATE, commit `…`, N requests, T s, P+C tokens |
+| LLM (`openrouter/google/gemini-3.7-flash`) | 97.3 % (143/147) | 89.8 % (132/147) | measured 2026-11-01, commit `ddfa673`, 1 request, 38.1 s, 4,149 prompt + 8,357 completion tokens (`results/llm.meta.json`) |
 
 - **Speaker accuracy**: share of quotes whose predicted speaker matches the
   gold label. When several characters speak at once ("they cried"), any of
@@ -100,9 +98,15 @@ four speakers (Alice, Hatter, March Hare, Dormouse).
   evenly (3 of 147 quotes), the gold label accepts several emotions. The
   baseline always answers "neutral"; its score equals the share of quotes
   whose gold label accepts neutral.
+- **Where the LLM fails**: all four of its speaker errors are group speech
+  ("they cried", "they both cried", "Sh! sh!"). The model answered
+  `Unknown` instead of picking one speaker, because the label format allows
+  only one. Every quote with a single speaker (143 of 147) was attributed
+  correctly. Allowing several speakers per quote is the obvious next step.
 - All numbers above are measured on this one chapter; nothing is estimated
   or extrapolated.
 
+  
 ## Data
 
 - `data/alice_ch07.txt` — chapter 7 of *Alice's Adventures in Wonderland*
