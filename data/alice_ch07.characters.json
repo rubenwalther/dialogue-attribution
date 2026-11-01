@@ -1,0 +1,8 @@
+{
+  "characters": [
+    {"name": "Alice", "description": "a curious, polite girl who joins the tea party uninvited"},
+    {"name": "Hatter", "description": "rude, talks in riddles, quarrelled with Time"},
+    {"name": "March Hare", "description": "the Hatter's tea-party companion, contrary and impolite"},
+    {"name": "Dormouse", "description": "sleepy, sits between the other two, tells a story about three sisters"}
+  ]
+}

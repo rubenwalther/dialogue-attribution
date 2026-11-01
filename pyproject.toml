@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dialogue-attribution"
+version = "0.1.0"
+description = "Who says each quote in a novel, and how? Speaker and emotion labels with an LLM, reproducible offline."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Ruben Walther" }]
+dependencies = ["pydantic>=2.6"]
+
+[project.urls]
+Repository = "https://github.com/rubenwalther/dialogue-attribution"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+dialogue-attribution = "dialogue_attribution.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "tests"]
+testpaths = ["tests"]
